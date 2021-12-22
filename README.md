@@ -230,10 +230,6 @@ curl 'http://localhost:3000/movies?page_id=2&page_size=10' | jq
 
 </details>
 
-## Database UML
-
-![Database UML](/resources/readme/order-demo.png "Database UML")
-
 ## Technology Stack
 
 - **Go 1.17**: *Leverage the standard libraries as much as possible*
