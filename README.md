@@ -2,8 +2,6 @@
 
 Go API that read a csv file and provide endpoints for Svelte UI to fetch movies from
 
-![ci-test](https://github.com/lavantien/order-demo/actions/workflows/ci.yml/badge.svg?branch=main)
-
 ## Requirements
 
 1. [X] Go API that fetch data from a csv file and provide endpoints for get a list of movies
