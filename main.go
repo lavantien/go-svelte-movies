@@ -7,12 +7,14 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	router := gin.Default()
+	router.Use(cors.Default())
 	router.GET("/movies", listMovies)
 	err := router.Run("127.0.0.1:5000")
 	if err != nil {
@@ -21,14 +23,14 @@ func main() {
 }
 
 type Movie struct {
-	Film                     string
-	Genre                    string
-	LeadStudio               string
-	AudienceScorePercentage  string
-	Profitability            string
-	RottenTomatoesPercentage string
-	WorldwideGross           string
-	Year                     string
+	Film                     string `json:"film"`
+	Genre                    string `json:"genre"`
+	LeadStudio               string `json:"lead_studio"`
+	AudienceScorePercentage  string `json:"audience_score_percentage"`
+	Profitability            string `json:"profitability"`
+	RottenTomatoesPercentage string `json:"rotten_tomatoes_percentage"`
+	WorldwideGross           string `json:"worldwide_gross"`
+	Year                     string `json:"year"`
 }
 
 type ListMoviesParams struct {
