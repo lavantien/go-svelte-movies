@@ -234,6 +234,7 @@ curl 'http://localhost:3000/movies?page_id=2&page_size=10' | jq
 
 - **Go 1.17**: *Leverage the standard libraries as much as possible*
 - **Github Actions CI**: *Make sure we don't push trash code into the codebase*
+- **Node/Svelte**: *Node is just for install Svelte, and Svelte is an revolutionize framework*
 
 ## Philosophy and Architecture
 
@@ -241,10 +242,18 @@ curl 'http://localhost:3000/movies?page_id=2&page_size=10' | jq
 
 ## Booting Up
 
-- Run all at once:
+- Install the dependencies:
 
 ```bash
-make serve
+make install
+```
+
+- Run server and webui:
+
+```bash
+make server
+
+make webui
 ```
 
 ## Development Infrastructure Setup
@@ -277,4 +286,10 @@ sudo apt install curl jq
 
 # Then install GNU-Make, cURL, and jq via Chocolatery in Admin pwsh
 choco install make curl jq
+```
+
+- [**Node**](https://nodejs.org/en/download/):
+
+```bash
+# Download the binary and install, or better, install node via nvm: https://github.com/nvm-sh/nvm
 ```

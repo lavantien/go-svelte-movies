@@ -14,7 +14,7 @@ func main() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	router := gin.Default()
 	router.GET("/movies", listMovies)
-	err := router.Run("127.0.0.1:3000")
+	err := router.Run("127.0.0.1:5000")
 	if err != nil {
 		log.Fatal("cannot start server", err)
 	}
