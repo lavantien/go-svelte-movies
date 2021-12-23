@@ -149,7 +149,7 @@ curl 'http://localhost:5000/movies?page_id=2&page_size=2' | jq
 ]
 ```
 
-### Svelte UI with a paginated table of movies (10 movies/page)
+### Rqm2: Svelte UI with a paginated table of movies (10 movies/page)
 
 ![API Works](api_works.png "API Works")
 ![Web Works](web_works.png "Web Works")
