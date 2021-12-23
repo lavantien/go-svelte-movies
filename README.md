@@ -159,7 +159,6 @@ curl 'http://localhost:5000/movies?page_id=2&page_size=2' | jq
 ## Technology Stack
 
 - **Go 1.17**: *Leverage the standard libraries as much as possible*
-- **Github Actions CI**: *Make sure we don't push trash code into the codebase*
 - **Node/Svelte+Bootstrap**: *Node is just for install Svelte, Svelte is an revolutionize framework, and Bootstrap is just great*
 
 ## Philosophy and Architecture
