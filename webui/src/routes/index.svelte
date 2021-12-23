@@ -23,7 +23,6 @@
 	$: lastPage = Math.max(Math.ceil(size / rowsPerPage) - 1, 0);
 
 	if (typeof fetch !== 'undefined') {
-		const url = `http://localhost:5000/movies?page_id=${currentPage + 1}&page_size=${rowsPerPage}`;
 		fetchAPI();
 	}
 
