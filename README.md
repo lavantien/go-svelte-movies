@@ -5,19 +5,20 @@ Go API that read a csv file and provide endpoints for Svelte UI to fetch movies 
 ## Requirements
 
 1. [X] Go API that fetch data from a csv file and provide endpoints for get a list of movies
-2. [ ] Svelte UI with a paginated table of movies (10 movies/page)
+2. [X] Svelte UI with a paginated table of movies (10 movies/page)
 
 - **Endpoints**:
 
 <details>
 	<summary>See details</summary>
 
+### Rqm1: Go API that fetch data from a csv file and provide endpoints for get a list of movies
+
 ```bash
 # See Booting Up running instructions in the section below first, and then:
 
-# Rqm1: Go API that fetch data from a csv file and provide endpoints for get a list of movies
 
-curl 'http://localhost:3000/movies?page_id=1&page_size=10' | jq
+curl 'http://localhost:5000/movies?page_id=1&page_size=10' | jq
 # Should return
 [
   {
@@ -122,7 +123,7 @@ curl 'http://localhost:3000/movies?page_id=1&page_size=10' | jq
   }
 ]
 
-curl 'http://localhost:3000/movies?page_id=2&page_size=10' | jq
+curl 'http://localhost:5000/movies?page_id=2&page_size=2' | jq
 # Should return
 [
   {
@@ -144,89 +145,14 @@ curl 'http://localhost:3000/movies?page_id=2&page_size=10' | jq
     "RottenTomatoesPercentage": "46",
     "WorldwideGross": "$55.86 ",
     "Year": "2007"
-  },
-  {
-    "Film": "Twilight: Breaking Dawn",
-    "Genre": "Romance",
-    "LeadStudio": "Independent",
-    "AudienceScorePercentage": "68",
-    "Profitability": "6.383363636",
-    "RottenTomatoesPercentage": "26",
-    "WorldwideGross": "$702.17 ",
-    "Year": "2011"
-  },
-  {
-    "Film": "Twilight",
-    "Genre": "Romance",
-    "LeadStudio": "Summit",
-    "AudienceScorePercentage": "82",
-    "Profitability": "10.18002703",
-    "RottenTomatoesPercentage": "49",
-    "WorldwideGross": "$376.66 ",
-    "Year": "2008"
-  },
-  {
-    "Film": "The Ugly Truth",
-    "Genre": "Comedy",
-    "LeadStudio": "Independent",
-    "AudienceScorePercentage": "68",
-    "Profitability": "5.402631579",
-    "RottenTomatoesPercentage": "14",
-    "WorldwideGross": "$205.30 ",
-    "Year": "2009"
-  },
-  {
-    "Film": "The Twilight Saga: New Moon",
-    "Genre": "Drama",
-    "LeadStudio": "Summit",
-    "AudienceScorePercentage": "78",
-    "Profitability": "14.1964",
-    "RottenTomatoesPercentage": "27",
-    "WorldwideGross": "$709.82 ",
-    "Year": "2009"
-  },
-  {
-    "Film": "The Time Traveler's Wife",
-    "Genre": "Drama",
-    "LeadStudio": "Paramount",
-    "AudienceScorePercentage": "65",
-    "Profitability": "2.598205128",
-    "RottenTomatoesPercentage": "38",
-    "WorldwideGross": "$101.33 ",
-    "Year": "2009"
-  },
-  {
-    "Film": "The Proposal",
-    "Genre": "Comedy",
-    "LeadStudio": "Disney",
-    "AudienceScorePercentage": "74",
-    "Profitability": "7.8675",
-    "RottenTomatoesPercentage": "43",
-    "WorldwideGross": "$314.70 ",
-    "Year": "2009"
-  },
-  {
-    "Film": "The Invention of Lying",
-    "Genre": "Comedy",
-    "LeadStudio": "Warner Bros.",
-    "AudienceScorePercentage": "47",
-    "Profitability": "1.751351351",
-    "RottenTomatoesPercentage": "56",
-    "WorldwideGross": "$32.40 ",
-    "Year": "2009"
-  },
-  {
-    "Film": "The Heartbreak Kid",
-    "Genre": "Comedy",
-    "LeadStudio": "Paramount",
-    "AudienceScorePercentage": "41",
-    "Profitability": "2.129444167",
-    "RottenTomatoesPercentage": "30",
-    "WorldwideGross": "$127.77 ",
-    "Year": "2007"
   }
 ]
 ```
+
+### Svelte UI with a paginated table of movies (10 movies/page)
+
+![API Works](api_works.png "API Works")
+![Web Works](web_works.png "Web Works")
 
 </details>
 
@@ -234,7 +160,7 @@ curl 'http://localhost:3000/movies?page_id=2&page_size=10' | jq
 
 - **Go 1.17**: *Leverage the standard libraries as much as possible*
 - **Github Actions CI**: *Make sure we don't push trash code into the codebase*
-- **Node/Svelte**: *Node is just for install Svelte, and Svelte is an revolutionize framework*
+- **Node/Svelte+Bootstrap**: *Node is just for install Svelte, Svelte is an revolutionize framework, and Bootstrap is just great*
 
 ## Philosophy and Architecture
 

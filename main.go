@@ -31,6 +31,7 @@ type Movie struct {
 	RottenTomatoesPercentage string `json:"rotten_tomatoes_percentage"`
 	WorldwideGross           string `json:"worldwide_gross"`
 	Year                     string `json:"year"`
+	Size                     int    `json:"size"`
 }
 
 type ListMoviesParams struct {
@@ -48,6 +49,7 @@ func ListMovies(ctx context.Context, arg ListMoviesParams) ([]Movie, error) {
 		return nil, err
 	}
 	movies := []Movie{}
+	size := len(lines) - 1
 	for _, line := range lines {
 		movie := Movie{
 			Film:                     line[0],
@@ -58,9 +60,11 @@ func ListMovies(ctx context.Context, arg ListMoviesParams) ([]Movie, error) {
 			RottenTomatoesPercentage: line[5],
 			WorldwideGross:           line[6],
 			Year:                     line[7],
+			Size:                     size,
 		}
 		movies = append(movies, movie)
 	}
+	movies = movies[1:]
 	return paginateMovies(movies, arg.Offset, arg.Limit), nil
 }
 
@@ -77,7 +81,7 @@ func paginateMovies(movies []Movie, offset int, limit int) []Movie {
 
 type listMoviesRequest struct {
 	PageID   int `form:"page_id" binding:"required,min=1"`
-	PageSize int `form:"page_size" binding:"required,min=5,max=10"`
+	PageSize int `form:"page_size" binding:"required,min=1,max=10"`
 }
 
 func listMovies(ctx *gin.Context) {
