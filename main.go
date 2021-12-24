@@ -12,6 +12,7 @@ import (
 )
 
 func main() {
+	ch = make(map[ListMoviesParams][]Movie)
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	router := gin.Default()
 	router.Use(cors.Default())
@@ -21,6 +22,8 @@ func main() {
 		log.Fatal("cannot start server", err)
 	}
 }
+
+var ch map[ListMoviesParams][]Movie
 
 type Movie struct {
 	Film                     string `json:"film"`
@@ -39,14 +42,25 @@ type ListMoviesParams struct {
 	Offset int `json:"offset"`
 }
 
-func ListMovies(ctx context.Context, arg ListMoviesParams) ([]Movie, error) {
+type ListMoviesResponse struct {
+	Movies []Movie `json:"movies"`
+	Cached bool    `json:"cached"`
+}
+
+func ListMovies(ctx context.Context, arg ListMoviesParams) (ListMoviesResponse, error) {
+	if _, ok := ch[arg]; ok {
+		return ListMoviesResponse{
+			Movies: ch[arg],
+			Cached: true,
+		}, nil
+	}
 	file, err := os.Open("movies.csv")
 	if err != nil {
-		return nil, err
+		return ListMoviesResponse{}, err
 	}
 	lines, err := csv.NewReader(file).ReadAll()
 	if err != nil {
-		return nil, err
+		return ListMoviesResponse{}, err
 	}
 	movies := []Movie{}
 	size := len(lines) - 1
@@ -65,7 +79,10 @@ func ListMovies(ctx context.Context, arg ListMoviesParams) ([]Movie, error) {
 		movies = append(movies, movie)
 	}
 	movies = movies[1:]
-	return paginateMovies(movies, arg.Offset, arg.Limit), nil
+	return ListMoviesResponse{
+		Movies: paginateMovies(movies, arg.Offset, arg.Limit),
+		Cached: false,
+	}, nil
 }
 
 func paginateMovies(movies []Movie, offset int, limit int) []Movie {
@@ -76,7 +93,8 @@ func paginateMovies(movies []Movie, offset int, limit int) []Movie {
 	if end > len(movies) {
 		end = len(movies)
 	}
-	return movies[offset:end]
+	ch[ListMoviesParams{Offset: offset, Limit: limit}] = movies[offset:end]
+	return ch[ListMoviesParams{Offset: offset, Limit: limit}]
 }
 
 type listMoviesRequest struct {
